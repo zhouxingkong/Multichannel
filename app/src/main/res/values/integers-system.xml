@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--默认系统参数：所有通道公用的参数-->
+    <integer name="REPEAT_PERIOD">125000</integer>
+    <integer name="HIGH_VOLTAGE">0x00</integer>
+    <integer name="CHANNEL_FLAG">0x00FF</integer>
+    <integer name="WORK_MODE">0x00</integer>
+    <integer name="SCAN_ACCURACY">5000</integer>
+    <integer name="ENCODER_HANDLE">0</integer>
+    <integer name="STATUSLED">0x02</integer>
+
+</resources>

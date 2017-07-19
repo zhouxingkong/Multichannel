@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--默认各通道独立工作参数：实际工作时每个通道的通道参数各不相同，但默认值相同-->
+    <integer name="TRIG_PULSE_WIDE">10</integer>
+    <integer name="SAMPLE_DELAY">100</integer>
+    <integer name="SAMPLE_DEPTH">2200</integer>
+    <integer name="GAIN_BAND_SELECT">0x02</integer>
+    <integer name="DAC_DATA">0x08A3</integer>
+    <integer name="DEMODU_SELECT">0x00</integer>
+    <integer name="FILTER_BAND">0</integer>
+    <integer name="GATE1_DET_POS">0</integer>
+    <integer name="GATE1_DET_WIDTH">0</integer>
+    <integer name="GATE2_DET_POS">0</integer>
+    <integer name="GATE2_DET_WIDTH">0</integer>
+    <integer name="GATE3_DET_POS">0</integer>
+    <integer name="GATE3_DET_WIDTH">0</integer>
+    <integer name="GATE4_DET_POS">0</integer>
+    <integer name="GATE4_DET_WIDTH">0</integer>
+
+</resources>
