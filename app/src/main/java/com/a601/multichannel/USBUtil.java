@@ -54,10 +54,16 @@ public class USBUtil {
         if (devCount > 0) {
             D2xxManager.FtDeviceInfoListNode deviceList = ftD2xx.getDeviceInfoListDetail(0);
             //下面是四种方法打开USB设备，使用一种即可
-            ftDevice = ftD2xx.openByIndex(context, 0, d2xxDrvParameter);
-            ftDevice = ftD2xx.openBySerialNumber(context, deviceList.serialNumber); //通过序列号打开
-            ftDevice = ftD2xx.openByLocation(context, deviceList.location); //通过位置打开
-            ftDevice = ftD2xx.openByDescription(context, deviceList.description);   //通过描述打开
+            ftDevice = ftD2xx.openByIndex(context, 0);
+//            ftDevice = ftD2xx.openBySerialNumber(context, deviceList.serialNumber); //通过序列号打开
+//            ftDevice = ftD2xx.openByLocation(context, deviceList.location); //通过位置打开
+//            ftDevice = ftD2xx.openByDescription(context, deviceList.description);   //通过描述打开
+            ftDevice.setBitMode((byte) 0, D2xxManager.FT_BITMODE_SYNC_FIFO);     //配置USB工作在同步FIFO模式
+            if(ftDevice == null)
+                System.out.println("USB设备打开失败");
+            else
+                System.out.println(ftDevice.toString());
+
         }
         else {
             System.out.println("没有设备可以打开");
@@ -66,7 +72,7 @@ public class USBUtil {
 
     public void readDevice(){
         if(ftDevice == null) {
-            System.out.print("没连接设备，所以不能读");
+            System.out.println("没连接设备，所以不能读");
             return;
         }
 
@@ -146,6 +152,7 @@ public class USBUtil {
 
                 writeData[0]++;
 
+
             }
 
         }
@@ -167,3 +174,4 @@ public class USBUtil {
     };
 
 }
+

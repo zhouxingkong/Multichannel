@@ -3,7 +3,6 @@ package com.a601.multichannel;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
-import android.preference.PreferenceManager;
 
 /**
  * Created by ylx on 2017/7/19.
@@ -49,7 +48,7 @@ public class ParameterUtil {
         editor.putInt("STATUSLED", res.getInteger(R.integer.STATUSLED));
         editor.apply();
 
-        for (int i =1; i<=4 ; i++) {
+        for (int i =1; i<=8 ; i++) {
             editor = context.getSharedPreferences("channel"+i, Context.MODE_PRIVATE).edit();
             editor.putInt("TRIG_PULSE_WIDE", res.getInteger(R.integer.TRIG_PULSE_WIDE));
             editor.putInt("SAMPLE_DELAY", res.getInteger(R.integer.SAMPLE_DELAY));
