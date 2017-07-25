@@ -21,6 +21,20 @@ public class ChannelData {
     private int GATE3_PEAK_POS;
     private int GATE3_PEAK_AMP;
     private int GATE4_PEAK_POS;
+    private int GATE4_PEAK_AMP;
+
+    //八个通道的数据单例
+    private static ChannelData[] channelDatas = new ChannelData[CHANNEL_TOTAL_NUM];
+
+
+    public static ChannelData getChannelData(int channel) {
+        //防止越界
+        int num = (channel < 1 || channel > CHANNEL_TOTAL_NUM) ? CHANNEL1 : channel;
+        if (channelDatas[num - 1] == null) {
+            channelDatas[num - 1] = new ChannelData();
+        }
+        return channelDatas[num - 1];
+    }
 
     public int getSAMPLE_DEPTH() {
         return SAMPLE_DEPTH;
@@ -126,19 +140,5 @@ public class ChannelData {
         this.GATE4_PEAK_AMP = GATE4_PEAK_AMP;
     }
 
-    private int GATE4_PEAK_AMP;
-
-    //八个通道的数据单例
-    private static ChannelData[] channelDatas = new ChannelData[CHANNEL_TOTAL_NUM];
-
-
-    public static ChannelData getChannelData(int channel) {
-        //防止越界
-        int num = (channel < 1 || channel > CHANNEL_TOTAL_NUM) ? CHANNEL1 : channel;
-        if (channelDatas[num-1] == null) {
-            channelDatas[num-1] = new ChannelData();
-        }
-        return channelDatas[num-1];
-    }
 
 }

@@ -3,6 +3,8 @@ package com.a601.multichannel;
 import android.content.Context;
 import android.content.SharedPreferences;
 
+import static com.a601.multichannel.TypeConvertUtil.convertIntToBytes;
+
 /**
  * Created by ylx on 2017/7/19.
  */
@@ -87,33 +89,33 @@ public class ChannelPara {
         editor = preferences.edit();
         TRIG_PULSE_WIDE = preferences.getInt("TRIG_PULSE_WIDE", 0);
         TRIG_PULSE_WIDE_BYTES = convertIntToBytes(TRIG_PULSE_WIDE, TRIG_PULSE_WIDE_LENGTH);
-        SAMPLE_DELAYS = preferences.getInt("SAMPLE_DELAYS", 0);
+        SAMPLE_DELAYS = preferences.getInt("SAMPLE_DELAY", 0);
         SAMPLE_DELAYS_BYTES = convertIntToBytes(SAMPLE_DELAYS, SAMPLE_DELAYS_LENGTH);
-        SAMPLE_DEPTHS = preferences.getInt("SAMPLE_DEPTHS", 0);
+        SAMPLE_DEPTHS = preferences.getInt("SAMPLE_DEPTH", 0);
         SAMPLE_DEPTHS_BYTES = convertIntToBytes(SAMPLE_DEPTHS, SAMPLE_DEPTHS_LENGTH);
-        GAIN_BAND_SELECTS = preferences.getInt("GAIN_BAND_SELECTS", 0);
+        GAIN_BAND_SELECTS = preferences.getInt("GAIN_BAND_SELECT", 0);
         GAIN_BAND_SELECTS_BYTES = convertIntToBytes(GAIN_BAND_SELECTS, GAIN_BAND_SELECTS_LENGTH);
-        DAC_DATAS = preferences.getInt("DAC_DATAS", 0);
+        DAC_DATAS = preferences.getInt("DAC_DATA", 0);
         DAC_DATAS_BYTES = convertIntToBytes(DAC_DATAS, DAC_DATAS_LENGTH);
-        DEMODU_SELECTS = preferences.getInt("DEMODU_SELECTS", 0);
+        DEMODU_SELECTS = preferences.getInt("DEMODU_SELECT", 0);
         DEMODU_SELECTS_BYTES = convertIntToBytes(DEMODU_SELECTS, DEMODU_SELECTS_LENGTH);
-        FILTER_BANDS = preferences.getInt("FILTER_BANDS", 0);
+        FILTER_BANDS = preferences.getInt("FILTER_BAND", 0);
         FILTER_BANDS_BYTES = convertIntToBytes(FILTER_BANDS, FILTER_BANDS_LENGTH);
-        GATE1_DET_POSS = preferences.getInt("GATE1_DET_POSS", 0);
+        GATE1_DET_POSS = preferences.getInt("GATE1_DET_POS", 0);
         GATE1_DET_POSS_BYTES = convertIntToBytes(GATE1_DET_POSS, GATE1_DET_POSS_LENGTH);
-        GATE1_DET_WIDTHS = preferences.getInt("GATE1_DET_WIDTHS", 0);
+        GATE1_DET_WIDTHS = preferences.getInt("GATE1_DET_WIDTH", 0);
         GATE1_DET_WIDTHS_BYTES = convertIntToBytes(GATE1_DET_WIDTHS, GATE1_DET_WIDTHS_LENGTH);
-        GATE2_DET_POSS = preferences.getInt("GATE2_DET_POSS", 0);
+        GATE2_DET_POSS = preferences.getInt("GATE2_DET_POS", 0);
         GATE2_DET_POSS_BYTES = convertIntToBytes(GATE2_DET_POSS, GATE2_DET_POSS_LENGTH);
-        GATE2_DET_WIDTHS = preferences.getInt("GATE2_DET_WIDTHS", 0);
+        GATE2_DET_WIDTHS = preferences.getInt("GATE2_DET_WIDTH", 0);
         GATE2_DET_WIDTHS_BYTES = convertIntToBytes(GATE2_DET_WIDTHS, GATE2_DET_WIDTHS_LENGTH);
-        GATE3_DET_POSS = preferences.getInt("GATE3_DET_POSS", 0);
+        GATE3_DET_POSS = preferences.getInt("GATE3_DET_POS", 0);
         GATE3_DET_POSS_BYTES = convertIntToBytes(GATE3_DET_POSS, GATE3_DET_POSS_LENGTH);
-        GATE3_DET_WIDTHS = preferences.getInt("GATE3_DET_WIDTHS", 0);
+        GATE3_DET_WIDTHS = preferences.getInt("GATE3_DET_WIDTH", 0);
         GATE3_DET_WIDTHS_BYTES = convertIntToBytes(GATE3_DET_WIDTHS, GATE3_DET_WIDTHS_LENGTH);
-        GATE4_DET_POSS = preferences.getInt("GATE4_DET_POSS", 0);
+        GATE4_DET_POSS = preferences.getInt("GATE4_DET_POS", 0);
         GATE4_DET_POSS_BYTES = convertIntToBytes(GATE4_DET_POSS, GATE4_DET_POSS_LENGTH);
-        GATE4_DET_WIDTHS = preferences.getInt("GATE4_DET_WIDTHS", 0);
+        GATE4_DET_WIDTHS = preferences.getInt("GATE4_DET_WIDTH", 0);
         GATE4_DET_WIDTHS_BYTES = convertIntToBytes(GATE4_DET_WIDTHS, GATE4_DET_WIDTHS_LENGTH);
         mchannel = channel;
         mContext = context;
@@ -136,7 +138,7 @@ public class ChannelPara {
     public void setTRIG_PULSE_WIDE(int TRIG_PULSE_WIDE) {
         this.TRIG_PULSE_WIDE = TRIG_PULSE_WIDE;
         TRIG_PULSE_WIDE_BYTES = convertIntToBytes(TRIG_PULSE_WIDE,TRIG_PULSE_WIDE_LENGTH);
-        editor.putInt("channel" + mchannel, TRIG_PULSE_WIDE);
+        editor.putInt("TRIG_PULSE_WIDE" , TRIG_PULSE_WIDE);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -148,7 +150,7 @@ public class ChannelPara {
     public void setSAMPLE_DELAYS(int SAMPLE_DELAYS) {
         this.SAMPLE_DELAYS = SAMPLE_DELAYS;
         SAMPLE_DELAYS_BYTES = convertIntToBytes(SAMPLE_DELAYS,SAMPLE_DELAYS_LENGTH);
-        editor.putInt("channel" + mchannel, SAMPLE_DELAYS);
+        editor.putInt("SAMPLE_DELAY" , SAMPLE_DELAYS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -160,7 +162,7 @@ public class ChannelPara {
     public void setSAMPLE_DEPTHS(int SAMPLE_DEPTHS) {
         this.SAMPLE_DEPTHS = SAMPLE_DEPTHS;
         SAMPLE_DEPTHS_BYTES = convertIntToBytes(SAMPLE_DEPTHS,SAMPLE_DEPTHS_LENGTH);
-        editor.putInt("channel" + mchannel, SAMPLE_DEPTHS);
+        editor.putInt("SAMPLE_DEPTH" , SAMPLE_DEPTHS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -172,7 +174,7 @@ public class ChannelPara {
     public void setGAIN_BAND_SELECTS(int GAIN_BAND_SELECTS) {
         this.GAIN_BAND_SELECTS = GAIN_BAND_SELECTS;
         GAIN_BAND_SELECTS_BYTES = convertIntToBytes(GAIN_BAND_SELECTS,GAIN_BAND_SELECTS_LENGTH);
-        editor.putInt("channel" + mchannel, GAIN_BAND_SELECTS);
+        editor.putInt("GAIN_BAND_SELECT" , GAIN_BAND_SELECTS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -184,7 +186,7 @@ public class ChannelPara {
     public void setDAC_DATAS(int DAC_DATAS) {
         this.DAC_DATAS = DAC_DATAS;
         DAC_DATAS_BYTES = convertIntToBytes(DAC_DATAS,DAC_DATAS_LENGTH);
-        editor.putInt("channel" + mchannel, DAC_DATAS);
+        editor.putInt("DAC_DATA" , DAC_DATAS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -196,7 +198,7 @@ public class ChannelPara {
     public void setDEMODU_SELECTS(int DEMODU_SELECTS) {
         this.DEMODU_SELECTS = DEMODU_SELECTS;
         DEMODU_SELECTS_BYTES = convertIntToBytes(DEMODU_SELECTS,DEMODU_SELECTS_LENGTH);
-        editor.putInt("channel" + mchannel, DEMODU_SELECTS);
+        editor.putInt("DEMODU_SELECT" , DEMODU_SELECTS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -208,7 +210,7 @@ public class ChannelPara {
     public void setFILTER_BANDS(int FILTER_BANDS) {
         this.FILTER_BANDS = FILTER_BANDS;
         FILTER_BANDS_BYTES = convertIntToBytes(FILTER_BANDS,FILTER_BANDS_LENGTH);
-        editor.putInt("channel" + mchannel, FILTER_BANDS);
+        editor.putInt("FILTER_BAND" , FILTER_BANDS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -220,7 +222,7 @@ public class ChannelPara {
     public void setGATE1_DET_POSS(int GATE1_DET_POSS) {
         this.GATE1_DET_POSS = GATE1_DET_POSS;
         GATE1_DET_POSS_BYTES = convertIntToBytes(GATE1_DET_POSS,GATE1_DET_POSS_LENGTH);
-        editor.putInt("channel" + mchannel, GATE1_DET_POSS);
+        editor.putInt("GATE1_DET_POS" , GATE1_DET_POSS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -232,7 +234,7 @@ public class ChannelPara {
     public void setGATE1_DET_WIDTHS(int GATE1_DET_WIDTHS) {
         this.GATE1_DET_WIDTHS = GATE1_DET_WIDTHS;
         GATE1_DET_WIDTHS_BYTES = convertIntToBytes(GATE1_DET_WIDTHS,GATE1_DET_WIDTHS_LENGTH);
-        editor.putInt("channel" + mchannel, GATE1_DET_WIDTHS);
+        editor.putInt("GATE1_DET_WIDTH" , GATE1_DET_WIDTHS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -244,7 +246,7 @@ public class ChannelPara {
     public void setGATE2_DET_POSS(int GATE2_DET_POSS) {
         this.GATE2_DET_POSS = GATE2_DET_POSS;
         GATE2_DET_POSS_BYTES = convertIntToBytes(GATE2_DET_POSS,GATE2_DET_POSS_LENGTH);
-        editor.putInt("channel" + mchannel, GATE2_DET_POSS);
+        editor.putInt("GATE2_DET_POS" , GATE2_DET_POSS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -256,7 +258,7 @@ public class ChannelPara {
     public void setGATE2_DET_WIDTHS(int GATE2_DET_WIDTHS) {
         this.GATE2_DET_WIDTHS = GATE2_DET_WIDTHS;
         GATE2_DET_WIDTHS_BYTES = convertIntToBytes(GATE2_DET_WIDTHS,GATE2_DET_WIDTHS_LENGTH);
-        editor.putInt("channel" + mchannel, GATE2_DET_WIDTHS);
+        editor.putInt("GATE2_DET_WIDTH" , GATE2_DET_WIDTHS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -268,7 +270,7 @@ public class ChannelPara {
     public void setGATE3_DET_POSS(int GATE3_DET_POSS) {
         this.GATE3_DET_POSS = GATE3_DET_POSS;
         GATE3_DET_POSS_BYTES = convertIntToBytes(GATE3_DET_POSS,GATE3_DET_POSS_LENGTH);
-        editor.putInt("channel" + mchannel, GATE3_DET_POSS);
+        editor.putInt("GATE3_DET_POS" , GATE3_DET_POSS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -280,7 +282,7 @@ public class ChannelPara {
     public void setGATE3_DET_WIDTHS(int GATE3_DET_WIDTHS) {
         this.GATE3_DET_WIDTHS = GATE3_DET_WIDTHS;
         GATE3_DET_WIDTHS_BYTES = convertIntToBytes(GATE3_DET_WIDTHS,GATE3_DET_WIDTHS_LENGTH);
-        editor.putInt("channel" + mchannel, GATE3_DET_WIDTHS);
+        editor.putInt("GATE3_DET_WIDTH" , GATE3_DET_WIDTHS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -292,7 +294,7 @@ public class ChannelPara {
     public void setGATE4_DET_POSS(int GATE4_DET_POSS) {
         this.GATE4_DET_POSS = GATE4_DET_POSS;
         GATE4_DET_POSS_BYTES = convertIntToBytes(GATE4_DET_POSS,GATE4_DET_POSS_LENGTH);
-        editor.putInt("channel" + mchannel, GATE4_DET_POSS);
+        editor.putInt("GATE4_DET_POS" , GATE4_DET_POSS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
@@ -304,18 +306,11 @@ public class ChannelPara {
     public void setGATE4_DET_WIDTHS(int GATE4_DET_WIDTHS) {
         this.GATE4_DET_WIDTHS = GATE4_DET_WIDTHS;
         GATE4_DET_WIDTHS_BYTES = convertIntToBytes(GATE4_DET_WIDTHS,GATE4_DET_WIDTHS_LENGTH);
-        editor.putInt("channel" + mchannel, GATE4_DET_WIDTHS);
+        editor.putInt("GATE4_DET_WIDTH" , GATE4_DET_WIDTHS);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
 
-    private byte[] convertIntToBytes(int integer, int length) {
-        byte[] data = new byte[length];
-        for (int i =0 ;i<length;i++) {
-            data[i] = (byte) ((integer >> (8 * i)) & 0xFF);
-        }
-        return data;
-    }
 
     public byte[] getTRIG_PULSE_WIDE_BYTES() {
         return TRIG_PULSE_WIDE_BYTES;

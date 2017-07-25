@@ -38,9 +38,10 @@ public class MainActivity extends AppCompatActivity {
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
                 if (b) {
                     mUsbClient.openDevice(MainActivity.this);
+                    mUsbClient.readDataStart();
 //                    USBSwitch.setEnabled(false);
                 } else {
-//                    mUsbClient.readDataStop();
+                    mUsbClient.readDataStop();
 //                    mUsbClient.readDataStart();
                     mUsbClient.closeDevice();
                 }
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
                 if (b) {
                     int a =  SystemPara.getSystemPara(MainActivity.this).getSTATUSLED() | 0x02;
                     SystemPara.getSystemPara(MainActivity.this).setSTATUSLED(a);
-//                    mUsbClient.readDataStart();
+                    ChannelPara.getChannelPara(MainActivity.this, 1).setSAMPLE_DEPTHS(100);
                 } else {
                     int a =  SystemPara.getSystemPara(MainActivity.this).getSTATUSLED() & ~0x02;
                     SystemPara.getSystemPara(MainActivity.this).setSTATUSLED(a);
@@ -67,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 if (b) {
                     int a =  SystemPara.getSystemPara(MainActivity.this).getSTATUSLED() | 0x01;
                     SystemPara.getSystemPara(MainActivity.this).setSTATUSLED(a);
+                    SystemPara.getSystemPara(MainActivity.this).setCHANNEL_FLAG(0xff);
                 } else {
                     int a =  SystemPara.getSystemPara(MainActivity.this).getSTATUSLED() & ~0x01;
                     SystemPara.getSystemPara(MainActivity.this).setSTATUSLED(a);

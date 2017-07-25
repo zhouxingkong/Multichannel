@@ -2,6 +2,10 @@ package com.a601.multichannel;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import com.a601.multichannel.TypeConvertUtil;
+import android.util.Log;
+
+import static com.a601.multichannel.TypeConvertUtil.convertIntToBytes;
 
 /**
  * Created by ylx on 2017/7/19.
@@ -47,17 +51,17 @@ public class SystemPara {
         editor = preferences.edit();
         REPEAT_PERIOD = preferences.getInt("REPEAT_PERIOD", 0);
         REPEAT_PERIOD_BYTES = convertIntToBytes(REPEAT_PERIOD, REPEAT_PERIOD_LENGTH);
-        HIGH_VOLTAGE = preferences.getInt("HIGH_VOLTAGE", 0 );
+        HIGH_VOLTAGE = preferences.getInt("HIGH_VOLTAGE", 0);
         HIGH_VOLTAGE_BYTES = convertIntToBytes(HIGH_VOLTAGE, HIGH_VOLTAGE_LENGTH);
-        CHANNEL_FLAG = preferences.getInt("CHANNEL_FLAG", 0 );
+        CHANNEL_FLAG = preferences.getInt("CHANNEL_FLAG", 0);
         CHANNEL_FLAG_BYTES = convertIntToBytes(CHANNEL_FLAG, CHANNEL_FLAG_LENGTH);
-        WORK_MODE = preferences.getInt("WORK_MODE", 0 );
+        WORK_MODE = preferences.getInt("WORK_MODE", 0);
         WORK_MODE_BYTES = convertIntToBytes(WORK_MODE, WORK_MODE_LENGTH);
-        SCAN_ACCURACY = preferences.getInt("SCAN_ACCURACY", 0 );
+        SCAN_ACCURACY = preferences.getInt("SCAN_ACCURACY", 0);
         SCAN_ACCURACY_BYTES = convertIntToBytes(SCAN_ACCURACY, SCAN_ACCURACY_LENGTH);
-        ENCODER_HANDLE = preferences.getInt("ENCODER_HANDLE", 0 );
+        ENCODER_HANDLE = preferences.getInt("ENCODER_HANDLE", 0);
         ENCODER_HANDLE_BYTES = convertIntToBytes(ENCODER_HANDLE, ENCODER_HANDLE_LENGTH);
-        STATUSLED = preferences.getInt("STATUSLED", 0 );
+        STATUSLED = preferences.getInt("STATUSLED", 0);
         STATUSLED_BYTES = convertIntToBytes(STATUSLED, STATUSLED_LENGTH);
 
         mContext = context;
@@ -77,7 +81,7 @@ public class SystemPara {
 
     public void setREPEAT_PERIOD(int REPEAT_PERIOD) {
         this.REPEAT_PERIOD = REPEAT_PERIOD;
-        REPEAT_PERIOD_BYTES = convertIntToBytes(REPEAT_PERIOD ,REPEAT_PERIOD_LENGTH);
+        REPEAT_PERIOD_BYTES = convertIntToBytes(REPEAT_PERIOD, REPEAT_PERIOD_LENGTH);
         editor.putInt("REPEAT_PERIOD", REPEAT_PERIOD);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
@@ -89,7 +93,7 @@ public class SystemPara {
 
     public void setHIGH_VOLTAGE(int HIGH_VOLTAGE) {
         this.HIGH_VOLTAGE = HIGH_VOLTAGE;
-        HIGH_VOLTAGE_BYTES = convertIntToBytes(HIGH_VOLTAGE , HIGH_VOLTAGE_LENGTH);
+        HIGH_VOLTAGE_BYTES = convertIntToBytes(HIGH_VOLTAGE, HIGH_VOLTAGE_LENGTH);
         editor.putInt("HIGH_VOLTAGE", HIGH_VOLTAGE);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
@@ -102,7 +106,7 @@ public class SystemPara {
     // TODO: 2017/7/24 下发的通道按位发 
     public void setCHANNEL_FLAG(int CHANNEL_FLAG) {
         this.CHANNEL_FLAG = CHANNEL_FLAG;
-        CHANNEL_FLAG_BYTES = convertIntToBytes(CHANNEL_FLAG , CHANNEL_FLAG_LENGTH);
+        CHANNEL_FLAG_BYTES = convertIntToBytes(CHANNEL_FLAG, CHANNEL_FLAG_LENGTH);
         editor.putInt("CHANNEL_FLAG", CHANNEL_FLAG);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
@@ -114,7 +118,7 @@ public class SystemPara {
 
     public void setWORK_MODE(int WORK_MODE) {
         this.WORK_MODE = WORK_MODE;
-        WORK_MODE_BYTES = convertIntToBytes(WORK_MODE , WORK_MODE_LENGTH);
+        WORK_MODE_BYTES = convertIntToBytes(WORK_MODE, WORK_MODE_LENGTH);
         editor.putInt("WORK_MODE", WORK_MODE);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
@@ -126,7 +130,7 @@ public class SystemPara {
 
     public void setSCAN_ACCURACY(int SCAN_ACCURACY) {
         this.SCAN_ACCURACY = SCAN_ACCURACY;
-        SCAN_ACCURACY_BYTES = convertIntToBytes(SCAN_ACCURACY , SCAN_ACCURACY_LENGTH);
+        SCAN_ACCURACY_BYTES = convertIntToBytes(SCAN_ACCURACY, SCAN_ACCURACY_LENGTH);
         editor.putInt("SCAN_ACCURACY", SCAN_ACCURACY);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
@@ -138,7 +142,7 @@ public class SystemPara {
 
     public void setENCODER_HANDLE(int ENCODER_HANDLE) {
         this.ENCODER_HANDLE = ENCODER_HANDLE;
-        ENCODER_HANDLE_BYTES = convertIntToBytes(ENCODER_HANDLE , ENCODER_HANDLE_LENGTH);
+        ENCODER_HANDLE_BYTES = convertIntToBytes(ENCODER_HANDLE, ENCODER_HANDLE_LENGTH);
         editor.putInt("ENCODER_HANDLE", ENCODER_HANDLE);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
@@ -150,19 +154,12 @@ public class SystemPara {
 
     public void setSTATUSLED(int STATUSLED) {
         this.STATUSLED = STATUSLED;
-        STATUSLED_BYTES = convertIntToBytes(STATUSLED , STATUSLED_LENGTH);
+        STATUSLED_BYTES = convertIntToBytes(STATUSLED, STATUSLED_LENGTH);
         editor.putInt("STATUSLED", STATUSLED);
         editor.apply();
         USBClient.getInstance(mContext).writeParameters();
     }
 
-    private byte[] convertIntToBytes(int integer, int length) {
-        byte[] data = new byte[length];
-        for (int i =0 ;i<length;i++) {
-            data[i] = (byte) ((integer >> (8 * i)) & 0xFF);
-        }
-        return data;
-    }
 
     public byte[] getREPEAT_PERIOD_BYTES() {
         return REPEAT_PERIOD_BYTES;
